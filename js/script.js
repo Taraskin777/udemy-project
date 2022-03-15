@@ -17,7 +17,7 @@
 // 1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
 // 'Сколько фильмов вы уже посмотрели?'
 
-let numberOfFilms = prompt("Скільки фільмів Ви вже подивилися?", "");
+let numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
 console.log(numberOfFilms);
 alert(`Ви подивилися вже ${numberOfFilms} фільмів!`);
 
@@ -35,5 +35,24 @@ let personalMovieDB = {
   genres: [],
   privat: false,
 };
+
+console.log(personalMovieDB);
+
+// 3) Задайте пользователю по два раза вопросы:
+//     - 'Один из последних просмотренных фильмов?'
+//     - 'На сколько оцените его?'
+// Ответы стоит поместить в отдельные переменные
+// Записать ответы в объект movies в формате:
+//     movies: {
+//         'logan': '8.1'
+//     }
+
+let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", "");
+let lastFilmsScore = +prompt("На скільки Ви його оціните", "");
+let lastFilms2 = prompt("Один з останніх фільмів, який Ви дивилися?", "");
+let lastFilmsScore2 = +prompt("На скільки Ви його оціните", "");
+
+personalMovieDB.movies[lastFilms] = lastFilmsScore;
+personalMovieDB.movies[lastFilms2] = lastFilmsScore2;
 
 console.log(personalMovieDB);
