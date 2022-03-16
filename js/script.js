@@ -45,7 +45,34 @@ let personalMovieDB = {
   privat: false,
 };
 
-for (let i = 0; i < 2; i++) {
+// Спосіб 1
+
+// let x = 0;
+// while (x < 2) {
+//   let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+//     lastFilmsScore = prompt("На скільки Ви його оціните", "");
+
+//   if (
+//     lastFilms == null ||
+//     lastFilmsScore == null ||
+//     lastFilms == "" ||
+//     lastFilmsScore == "" ||
+//     lastFilms.length > 50
+//   ) {
+//     console.log("error");
+//     x--;
+//   } else {
+//     personalMovieDB.movies[lastFilms] = lastFilmsScore;
+//     console.log("done");
+//   }
+//   x++;
+// }
+
+
+// Спосіб 2
+
+let x = 0;
+do {
   let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
     lastFilmsScore = prompt("На скільки Ви його оціните", "");
 
@@ -57,12 +84,34 @@ for (let i = 0; i < 2; i++) {
     lastFilms.length > 50
   ) {
     console.log("error");
-    i--;
+    x--;
   } else {
     personalMovieDB.movies[lastFilms] = lastFilmsScore;
     console.log("done");
   }
-}
+  x++;
+} while (x < 2);
+
+// Спосіб 3
+
+// for (let i = 0; i < 2; i++) {
+//   let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+//     lastFilmsScore = prompt("На скільки Ви його оціните", "");
+
+//   if (
+//     lastFilms == null ||
+//     lastFilmsScore == null ||
+//     lastFilms == "" ||
+//     lastFilmsScore == "" ||
+//     lastFilms.length > 50
+//   ) {
+//     console.log("error");
+//     i--;
+//   } else {
+//     personalMovieDB.movies[lastFilms] = lastFilmsScore;
+//     console.log("done");
+//   }
+// }
 
 if (personalMovieDB.count < 10) {
   alert("Ви подивилися мало фільмів!");
