@@ -17,26 +17,12 @@
 // 1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
 // 'Сколько фильмов вы уже посмотрели?'
 
-let numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
-console.log(numberOfFilms);
-alert(`Ви подивилися вже ${numberOfFilms} фільмів!`);
-
 // 2) Создать объект personalMovieDB и в него поместить такие свойства:
 //     - count - сюда передается ответ на первый вопрос
 //     - movies - в это свойство поместить пустой объект
 //     - actors - тоже поместить пустой объект
 //     - genres - сюда поместить пустой массив
 //     - privat - в это свойство поместить boolean(логическое) значение false
-
-let personalMovieDB = {
-  count: numberOfFilms,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false,
-};
-
-console.log(personalMovieDB);
 
 // 3) Задайте пользователю по два раза вопросы:
 //     - 'Один из последних просмотренных фильмов?'
@@ -47,12 +33,44 @@ console.log(personalMovieDB);
 //         'logan': '8.1'
 //     }
 
-let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", "");
-let lastFilmsScore = +prompt("На скільки Ви його оціните", "");
-let lastFilms2 = prompt("Один з останніх фільмів, який Ви дивилися?", "");
-let lastFilmsScore2 = +prompt("На скільки Ви його оціните", "");
+let numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
+console.log(numberOfFilms);
+alert(`Ви подивилися вже ${numberOfFilms} фільмів!`);
 
-personalMovieDB.movies[lastFilms] = lastFilmsScore;
-personalMovieDB.movies[lastFilms2] = lastFilmsScore2;
+let personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
 
+for (let i = 0; i < 2; i++) {
+  let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+    lastFilmsScore = prompt("На скільки Ви його оціните", "");
+
+  if (
+    lastFilms == null ||
+    lastFilmsScore == null ||
+    lastFilms == "" ||
+    lastFilmsScore == "" ||
+    lastFilms.length > 50
+  ) {
+    console.log("error");
+    i--;
+  } else {
+    personalMovieDB.movies[lastFilms] = lastFilmsScore;
+    console.log("done");
+  }
+}
+
+if (personalMovieDB.count < 10) {
+  alert("Ви подивилися мало фільмів!");
+} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+  alert("Ви класичний глядач!");
+} else if (personalMovieDB.count > 30) {
+  alert("Ви кіноман!");
+} else {
+  alert("Вийшла помилка!");
+}
 console.log(personalMovieDB);
