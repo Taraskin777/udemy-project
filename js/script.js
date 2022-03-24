@@ -33,14 +33,12 @@
 //         'logan': '8.1'
 //     }
 
-let numberOfFilms;
-
-function start() {
-  numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
-  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
-    numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
-  }
-}
+// function start() {
+//   numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
+//   while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+//     numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
+//   }
+// }
 
 start();
 
@@ -50,6 +48,73 @@ let personalMovieDB = {
   actors: {},
   genres: [],
   privat: false,
+  start: function () {
+    numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
+    while (
+      numberOfFilms == "" ||
+      numberOfFilms == null ||
+      isNaN(numberOfFilms)
+    ) {
+      numberOfFilms = +prompt("Скільки фільмів Ви вже подивилися?", "");
+    }
+  },
+  rememberMyFilms: function () {
+    for (let i = 0; i < 2; i++) {
+      let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+        lastFilmsScore = prompt("На скільки Ви його оціните", "");
+
+      if (
+        lastFilms == null ||
+        lastFilmsScore == null ||
+        lastFilms == "" ||
+        lastFilmsScore == "" ||
+        lastFilms.length > 50
+      ) {
+        console.log("error");
+        i--;
+      } else {
+        personalMovieDB.movies[lastFilms] = lastFilmsScore;
+        console.log("done");
+      }
+    }
+  },
+  detectPersonalLevel: function () {
+    if (personalMovieDB.count < 10) {
+      alert("Ви подивилися мало фільмів!");
+    } else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+      alert("Ви класичний глядач!");
+    } else if (personalMovieDB.count > 30) {
+      alert("Ви кіноман!");
+    } else {
+      alert("Вийшла помилка!");
+    }
+  },
+  showMyDB: function () {
+    if (personalMovieDB.privat == false) {
+      console.log(personalMovieDB);
+    } else {
+      console.log(false);
+    }
+  },
+  toggleVisibleMyDB: function () {
+    if (personalMovieDB.privat) {
+      personalMovieDB.privat = false;
+    } else {
+      personalMovieDB.privat = true;
+    }
+  },
+  writeYourGenres: function () {
+    for (let i = 1; i < 2; i++) {
+      let genre = prompt(`Ваш улюблений жанр під номером ${i}`, "");
+
+      if (genre == "" || genre == null) {
+        console.log("Ви ввели некоректні дані або не ввели їх зовсім");
+        i--;
+      } else {
+        personalMovieDB.genres[i - 1] = genre;
+      }
+    }
+  },
 };
 
 // Спосіб 1
@@ -100,52 +165,52 @@ let personalMovieDB = {
 
 // Спосіб 3
 
-function rememberMyFilms() {
-  for (let i = 0; i < 2; i++) {
-    let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
-      lastFilmsScore = prompt("На скільки Ви його оціните", "");
+// function rememberMyFilms() {
+//   for (let i = 0; i < 2; i++) {
+//     let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+//       lastFilmsScore = prompt("На скільки Ви його оціните", "");
 
-    if (
-      lastFilms == null ||
-      lastFilmsScore == null ||
-      lastFilms == "" ||
-      lastFilmsScore == "" ||
-      lastFilms.length > 50
-    ) {
-      console.log("error");
-      i--;
-    } else {
-      personalMovieDB.movies[lastFilms] = lastFilmsScore;
-      console.log("done");
-    }
-  }
-}
+//     if (
+//       lastFilms == null ||
+//       lastFilmsScore == null ||
+//       lastFilms == "" ||
+//       lastFilmsScore == "" ||
+//       lastFilms.length > 50
+//     ) {
+//       console.log("error");
+//       i--;
+//     } else {
+//       personalMovieDB.movies[lastFilms] = lastFilmsScore;
+//       console.log("done");
+//     }
+//   }
+// }
 
-rememberMyFilms();
+// rememberMyFilms();
 
-function detectPersonalLevel() {
-  if (personalMovieDB.count < 10) {
-    alert("Ви подивилися мало фільмів!");
-  } else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
-    alert("Ви класичний глядач!");
-  } else if (personalMovieDB.count > 30) {
-    alert("Ви кіноман!");
-  } else {
-    alert("Вийшла помилка!");
-  }
-}
+// function detectPersonalLevel() {
+//   if (personalMovieDB.count < 10) {
+//     alert("Ви подивилися мало фільмів!");
+//   } else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+//     alert("Ви класичний глядач!");
+//   } else if (personalMovieDB.count > 30) {
+//     alert("Ви кіноман!");
+//   } else {
+//     alert("Вийшла помилка!");
+//   }
+// }
 
-detectPersonalLevel();
+// detectPersonalLevel();
 
-function showMyDB() {
-  if (personalMovieDB.privat == false) {
-    console.log(personalMovieDB);
-  } else {
-    console.log(false);
-  }
-}
+// function showMyDB() {
+//   if (personalMovieDB.privat == false) {
+//     console.log(personalMovieDB);
+//   } else {
+//     console.log(false);
+//   }
+// }
 
-showMyDB();
+// showMyDB();
 
 function writeYourGenres() {
   for (let i = 1; i <= 3; i++) {
