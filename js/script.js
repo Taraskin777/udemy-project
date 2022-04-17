@@ -58,7 +58,10 @@ const personalMovieDB = {
   },
   rememberMyFilms: function () {
     for (let i = 0; i < 2; i++) {
-      let lastFilms = prompt("Один з останніх фільмів, який Ви дивилися?", ""),
+      let lastFilms = prompt(
+          "Один з останніх фільмів, який Ви дивилися?",
+          ""
+        ).trim(),
         lastFilmsScore = prompt("На скільки Ви його оціните", "");
 
       if (
@@ -224,5 +227,12 @@ const personalMovieDB = {
 // }
 
 // showMyDB();
+
+personalMovieDB.start();
+personalMovieDB.rememberMyFilms();
+personalMovieDB.detectPersonalLevel();
+personalMovieDB.showMyDB();
+personalMovieDB.toggleVisibleMyDB();
+personalMovieDB.writeYourGenres();
 
 console.log(personalMovieDB);
